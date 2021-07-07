@@ -1,7 +1,7 @@
 ### Instructions
 
-This repo contains solutions of programs on interview bits
+This repo contains solutions of programs on interview bit (primarily in Python 3)
 
-### You can also contribute
+### Want to Contribute?
 
 If you wish to contribute you can fork it, make changes and then make pull request, it will be reviewed and added to the main project.
