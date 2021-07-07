@@ -1,0 +1,35 @@
+import sys
+class Solution:
+    def maxPathSum(self, A):
+        x = self.calSum(A)
+        return max(x,A.val)
+    
+    def calSum(self,A):
+        if not A:
+            return float("-inf")
+        
+        sum1=float("-inf")
+        left=self.calSum(A.left)
+        right=self.calSum(A.right)
+        
+        if A.left and A.right:
+            sum1=A.left.val+A.right.val+A.val
+            if A.left.val>A.right.val:
+                if A.val+A.left.val>A.val:
+                    A.val+=A.left.val
+                sum1=max(A.val,sum1)
+            else:
+                if A.val+A.right.val>A.val:
+                    A.val+=A.right.val
+                sum1=max(A.val,sum1)
+        elif A.left:
+            if A.val+A.left.val>A.val:
+                A.val+=A.left.val
+            sum1=max(A.val,sum1)
+        elif A.right:
+            if A.val+A.right.val>A.val:
+                A.val+=A.right.val
+            sum1=max(A.val,sum1)
+        else:
+            return A.val
+        return max(sum1,max(left,right))
