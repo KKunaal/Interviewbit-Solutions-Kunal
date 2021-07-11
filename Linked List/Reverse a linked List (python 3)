@@ -1,3 +1,4 @@
+# Recursive Solution
 class Solution:
 	def reverseList(self, A):
         if not A or not A.next:
@@ -7,3 +8,16 @@ class Solution:
         A.next.next = A;
         A.next = None;
         return p
+
+# Non-recursive Solution
+class Solution:
+	def reverseList(self, A):
+        curr=A
+        prev=None
+
+        while curr:
+            next=curr.next
+            curr.next=prev
+            prev=curr
+            curr=next
+        return prev
