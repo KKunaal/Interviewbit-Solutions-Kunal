@@ -1,0 +1,21 @@
+class Solution:
+    def slidingMaximum(self, A, B):
+        i = 0
+        out = []
+        out.append(max(A[i:i+B]))
+        for i in range(len(A)-B):
+            new = A[i+B]
+            old = A[i]
+            if new > out[-1]:
+                # Checking if new element added in window after sliding is greater than the maximum element in the last window
+                # if so, the newly added element should be the largest one in current window
+                out.append(new)
+            else:
+                if out[-1] == old:
+                    # Checking if the maximum element from last window was the first element in it or not, 
+                    # if so, need to find out max in complete window
+                    out.append(max(A[i+1:i+1+B]))
+                else:
+                    # if not, then it means max element in last window will be max element in current window as well
+                    out.append(out[-1])
+        return out
