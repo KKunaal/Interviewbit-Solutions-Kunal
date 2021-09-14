@@ -1,0 +1,28 @@
+# There might be a change in the question. This program is repeating if there is a subsequence of length greater than 1. 
+import numpy as np
+class Solution:
+	# @param A : string
+	# @return an integer
+	def anytwo(self, A):
+    
+        B = A
+        n = len(A)
+        L = np.zeros((n+1,n+1),int)
+
+        for i in range(n+1):
+            for j in range(n+1):
+                if i == 0 or j == 0:
+                    L[i][j] = 0
+                elif A[i-1] == B[j-1] and i-1!=j-1:
+                    L[i][j] = L[i-1][j-1] + 1
+                else:
+                    L[i][j] = max(L[i-1][j],L[i][j-1])
+        
+        # Below 4 lines for returning whether there is a repeating subsequence of lenght greater than 1
+        if L[n][n]>1:
+            return 1
+        else:
+            return 0
+        
+        # Below line should be replaced with above four lines to return the actual length of substring
+        # return L[n][n]
