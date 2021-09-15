@@ -1,0 +1,23 @@
+import numpy as np
+class Solution:
+	# @param A : string
+	# @param B : string
+	# @return an integer
+	def numDistinct(self, A, B):
+        
+        m = len(A)
+        n = len(B)
+        U = np.zeros((n+1,m+1),int)
+
+        for i in range(n+1):
+            for j in range(m+1):
+                if i == 0:
+                    U[i][j] = 1
+                elif j == 0:
+                    U[i][j] = 0
+                elif B[i-1] != A[j-1]:
+                    U[i][j] = U[i][j-1]
+                elif B[i-1] == A[j-1]:
+                    U[i][j] = U[i][j-1] + U[i-1][j-1]
+        
+        return U[n][m]
